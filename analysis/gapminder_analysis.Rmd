@@ -1,0 +1,65 @@
+---
+title: "Gapminder Analysis"
+author: "Maya Craig"
+date: "`r Sys.Date()`"
+output: html_document:
+  toc: yes
+  toc_float: yes
+  code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+In this document, I will analyze how life expectancy has changed over time.
+
+# Reading in gapminder data
+
+```{r reading-in-data}
+gapminder_df <- read.csv("data/gapminder_data.csv")
+```
+
+Lists:
+
+-   item 1
+-   item 2
+
+Hyphen list
+
+-   item 1
+-   item 2
+
+Make text **bold with asterisks** or *italic with one*
+
+Greek letters $\mu$ or $\Delta$
+
+hyperlinks [hyperlinks](https://pad.carpentries.org/Spring2024-BIOMI6300)
+
+# Calculating summary statistics
+
+```{r calculating-median-pop, echo = FALSE}
+med_pop <- median(gapminder_df$pop)
+num_obs <- nrow(gapminder_df)
+```
+
+Over `r num_obs` observations, the median population was `r round(med_pop/10e6, 3)` million people.
+
+# Plotting life expectancy over the years
+
+```{r line-graph}
+library(ggplot2)
+ggplot(gapminder_df, aes(x = year, y = lifeExp, group = country, color = continent)) + geom_line() + scale_y_log10()
+```
+
+# Plotting population distribution
+
+```{r histogram, message=FALSE, fig.width=10}
+ggplot(gapminder_df, aes(x=pop)) + geom_histogram()
+```
+
+| Col1 | Col2 | Col3 |
+|------|------|------|
+|      |      |      |
+|      |      |      |
+|      |      |      |
